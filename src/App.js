@@ -1,31 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 const App = function () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>
-          my first react app
-        </h1>
-        <code>
-          Hello World!!!
-        </code>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="page-wrapper">
+      <header>
+        <span className="logo">ustis</span>
       </header>
-    </div>
-  );
-}
+      <div className="page-content">
+        <aside>
+          <nav>
+            <ul>
+              <li>
+                <a href="/plug">My profile</a>
+              </li>
+              <li>
+                <a href="/plug">Newsletter</a>
+              </li>
+              <li>
+                <a href="/plug">messages</a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+        <section>
+          <img className="user-poster" src="https://media.kg-portal.ru/movies/d/drive/posters/drive_5t.jpg" alt="user-poster"></img>
+          <div className="user-page">
+            <img className="avatar" src="https://avatarfiles.alphacoders.com/942/94269.jpg" alt="avatar"></img>
+            <div className="user-info">
+              <p className="user-name">User Name</p>
+              <p className="user-birth">User Birth Date</p>
+              <p className="user-city">User City</p>
+              <p className="user-education">User Education</p>
+              <p className="user-site">User Website</p>
+            </div>
+          </div>
 
-export default App;
+          <div className="user-wall">
+
+          </div>
+        </section>
+      </div>
+    </div>
+  )
+};
+
+export default App
