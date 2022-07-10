@@ -1,0 +1,31 @@
+aside {
+    max-width: 200px;
+    width: 100%;
+    height: fit-content;
+    margin: 0 20px 0 0;
+    
+    background-color: rgb(235, 235, 235);
+    box-shadow: 0 0 25px rgba(53, 53, 53, 0.692);
+    border-radius: 10px;
+}
+
+.list {
+    list-style: none;
+    padding: 0 20px;
+}
+
+.link {
+    text-decoration: none;
+    color: rgb(34, 2, 124);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.link:hover {
+    color: cadetblue;
+    text-decoration: underline;
+}
+
+.item{
+    margin-bottom: 10px;
+}
