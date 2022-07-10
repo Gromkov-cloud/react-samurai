@@ -1,0 +1,36 @@
+.postContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 50px;
+
+    background-color: rgb(235, 235, 235);
+    box-shadow: 0 0 25px rgba(53, 53, 53, 0.692);
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.input{
+    height: 100px;
+    
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 0.8 em;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+}
+
+.title{
+    height: 50px;
+}
+
+.post{
+    margin: 10px 0 30px;
+}
+
+.button{
+    font-size: 20px;
+    padding: 10px;
+
+    cursor: pointer;
+}
