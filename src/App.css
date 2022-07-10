@@ -1,9 +1,9 @@
 .page-wrapper {
-  max-width: 1000px;
-  margin: 0 auto;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .page-content {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }

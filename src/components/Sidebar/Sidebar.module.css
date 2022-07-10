@@ -16,9 +16,9 @@ aside {
 
 .link {
     text-decoration: none;
-    color: rgb(34, 2, 124);
     font-size: 20px;
     font-weight: 500;
+    color: black;
 }
 
 .link:hover {
@@ -28,4 +28,8 @@ aside {
 
 .item{
     margin-bottom: 10px;
+}
+
+.active{
+    color: #fa9d01;
 }
