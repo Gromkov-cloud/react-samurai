@@ -21,7 +21,7 @@ const Sidebar = () => {
                         </NavLink>
                     </li>
                     <li className={s.item}>
-                        <NavLink to="/messanges"
+                        <NavLink to="/messages"
                               className={navData => navData.isActive ? `${s.link} ${s.active}` : s.link}
                         >
                             Messages

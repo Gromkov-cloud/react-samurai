@@ -1,0 +1,40 @@
+.messengerContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 100%;
+
+    background-color: rgb(235, 235, 235);
+    box-shadow: 0 0 25px rgba(53, 53, 53, 0.692);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.peopleList {
+
+}
+
+.peopleList ul {
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+}
+
+.peopleList li {
+
+}
+
+.link {
+    font-weight: 700;
+    font-size: 20px;
+    background-color: #fff;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.messenger {
+    padding: 20px;
+}
+
