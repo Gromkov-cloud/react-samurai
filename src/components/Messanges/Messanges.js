@@ -1,42 +1,18 @@
 import s from "./Messanges.module.css"
-import {NavLink} from "react-router-dom";
+import DialogLinks from "./DialogLink/DialogLink.js"
+import DialogMessages from "./DialogMessage/DialogMessage";
 
-const DialogLink = (props) => {
-    return (
-        <li>
-            <NavLink to={props.id} className={s.link}>
-                {props.name}
-            </NavLink>
-        </li>
-    )
-}
-const Message = (props) => {
-    return (
-        <div className={s.message}>{props.message}</div>
-    )
-}
-
-const Messages = () => {
+const Messages = (props) => {
     return (
         <div className={s.messengerContainer}>
             <div className={s.peopleList}>
                 <ul>
-                    <DialogLink name="Petr" id="1"/>
-                    <DialogLink name="Oksana" id="2"/>
-                    <DialogLink name="Vladislav" id="3"/>
-                    <DialogLink name="Dmitry" id="4"/>
-                    <DialogLink name="Alena" id="5"/>
-                    <DialogLink name="Masha" id="6"/>
-                    <DialogLink name="Petr" id="7"/>
+                    <DialogLinks linksData={dialogLinksData}/>
                 </ul>
             </div>
             <div className={s.messenger}>
                 <div className={s.messengesContainer}>
-                    <Message message="Hello"/>
-                    <Message message="Hello"/>
-                    <Message message="Hello"/>
-                    <Message message="Hello"/>
-                    <Message message="Hello"/>
+                    <DialogMessages messagesData={dialogMessagesData}/>
                 </div>
                 <div className={s.newMessageContainer}>
                     <input type="text" placeholder="New message"/>
@@ -46,5 +22,21 @@ const Messages = () => {
         </div>
     )
 }
+
+let dialogLinksData = [
+    {name: "Petr", id: "1"},
+    {name: "Sergey", id: "2"},
+    {name: "Lena", id: "3"},
+    {name: "Valera", id: "4"},
+    {name: "Anastasia", id: "5"},
+]
+let dialogMessagesData = [
+    {id: 1, message : "Hello",},
+    {id: 2, message : "Душа моя озарена неземной радостью, как эти чудесные весенние утра, которыми я наслаждаюсь от всего сердца. Я совсем один и блаженствую в здешнем краю, словно созданном для таких, как я."},
+    {id: 3, message : "Душа моя озарена неземной радостью, как эти чудесные весенние утра, которыми я наслаждаюсь от всего сердца. Я совсем один и блаженствую в здешнем краю, словно созданном для таких, как я."},
+    {id: 4, message : "Душа моя озарена неземной радостью, как эти чудесные весенние утра, которыми я наслаждаюсь от всего сердца. Я совсем один и блаженствую в здешнем краю, словно созданном для таких, как я."},
+    {id: 5, message : "Душа моя озарена неземной радостью, как эти чудесные весенние утра, которыми я наслаждаюсь от всего сердца. Я совсем один и блаженствую в здешнем краю, словно созданном для таких, как я."},
+    {id: 6, message : "Душа моя озарена неземной радостью, как эти чудесные весенние утра, которыми я наслаждаюсь от всего сердца. Я совсем один и блаженствую в здешнем краю, словно созданном для таких, как я."},
+]
 
 export default Messages
