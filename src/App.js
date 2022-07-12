@@ -8,7 +8,7 @@ import Newsletter from "./components/Newsletter/Newsletter";
 import Music from "./components/Music/Music";
 import Login from "./components/Login/Login";
 
-const App = function () {
+const App = function (props) {
     return (
         <BrowserRouter>
             <div className="page-wrapper">
@@ -16,11 +16,11 @@ const App = function () {
                 <div className="page-content">
                     <Sidebar/>
                     <Routes>
-                        <Route path="/" element={<Profile/>}></Route>
-                        <Route path="/newsletter" element={<Newsletter/>}></Route>
-                        <Route path="/messages" element={<Messages/>}></Route>
-                        <Route path="/music" element={<Music/>}></Route>
-                        <Route path="/login" element={<Login/>}></Route>
+                        <Route path="/" element={<Profile/>}/>
+                        <Route path="/newsletter" element={<Newsletter/>}/>
+                        <Route path="/messages" element={<Messages MessagesData={props.appState.MessagesData}/>}/>
+                        <Route path="/music" element={<Music/>}/>
+                        <Route path="/login" element={<Login/>}/>
                     </Routes>
                 </div>
             </div>

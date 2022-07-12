@@ -2,7 +2,9 @@ import {NavLink} from "react-router-dom";
 import s from "./DialogLink.module.css";
 
 let DialogLinks = (props) => {
+    // debugger
     return (
+
         props.linksData.map((linkData) =>
             <li key={linkData.id}>
                 <NavLink to={linkData.id} className={s.link}>
