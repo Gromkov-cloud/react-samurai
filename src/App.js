@@ -18,7 +18,13 @@ const App = function (props) {
                     <Routes>
                         <Route path="/" element={<Profile/>}/>
                         <Route path="/newsletter" element={<Newsletter/>}/>
-                        <Route path="/messages" element={<Messages MessagesData={props.appState.MessagesData}/>}/>
+                        <Route path="/messages"
+                               element={
+                                   <Messages MessagesData={props.appState.MessagesData}
+                                             MessagesActions={props.MessagesActions}
+                                   />
+                               }
+                        />
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/login" element={<Login/>}/>
                     </Routes>
