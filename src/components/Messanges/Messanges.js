@@ -6,10 +6,14 @@ import React from "react";
 const Messages = (props) => {
     const textAreaRef = React.createRef()
 
+    const readTextAreaValue = () => textAreaRef.current.value
+    const getTextareaNewValue = () => props.MessagesData.dialogMessagesData.messageInput
 
-
-    let readTextAreaValue = () => {
-        return textAreaRef.current.value
+    const onTextareaInput = () => {
+        props.MessagesActions.changeInputMessageData(readTextAreaValue())
+    }
+    const onMessageSubmit = () => {
+        props.MessagesActions.changeMessageData()
     }
 
     return (
@@ -26,14 +30,11 @@ const Messages = (props) => {
                 <div className={s.newMessageContainer}>
                     <textarea
                         ref={textAreaRef}
-                        onInput={() => props.MessagesActions.changeInputMessageData(readTextAreaValue())}
-                        value={props.MessagesData.dialogMessagesData.messageInput}
+                        onInput={onTextareaInput}
+                        value={getTextareaNewValue()}
                         placeholder="New message"
                     />
-
-                    <button onClick={() => props.MessagesActions.changeMessageData()}>
-                        Submit
-                    </button>
+                    <button onClick={onMessageSubmit}>Submit</button>
                 </div>
             </div>
         </div>
