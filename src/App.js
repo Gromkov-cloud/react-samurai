@@ -16,8 +16,15 @@ const App = function (props) {
                 <div className="page-content">
                     <Sidebar/>
                     <Routes>
-                        <Route path="/" element={<Profile/>}/>
-                        <Route path="/newsletter" element={<Newsletter/>}/>
+                        <Route path="/"
+                               element={<Profile
+                                    appState={props.appState}
+                                    dispatch={props.dispatch}
+                               />}
+                        />
+                        <Route path="/newsletter"
+                               element={<Newsletter/>}
+                        />
                         <Route path="/messages"
                                element={
                                    <Messages MessagesData={props.appState.MessagesData}

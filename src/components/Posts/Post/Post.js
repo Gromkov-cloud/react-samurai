@@ -1,21 +1,26 @@
 import s from "./Post.module.css"
 
 const Post = (props) => {
-    return (
-        <div className={s.postContainer}>
+    const posts = () => props.appState.PostsData.Posts.map(post =>
+        <div className={s.postContainer}
+             key={post.likes}
+        >
             <div className={s.header}>
-                <img className={s.avatar} src={props.avatar} alt="avatar"></img>
-                <span className={s.author}>{props.author}</span>
+                <img className={s.avatar} src={post.avatar} alt="avatar"></img>
+                <span className={s.author}>{post.author}</span>
             </div>
             <div>
-                <h1 className={s.title}>{props.title}</h1>
-                <p className={s.post}>{props.post}</p>
+                <h1 className={s.title}>{post.title}</h1>
+                <p className={s.post}>{post.postText}</p>
             </div>
             <span className={s.likesContainer}>
                 Likes
-                <span className={s.likes}>{props.likes}</span>
+                <span className={s.likes}>{Math.floor(post.likes)}</span>
             </span>
         </div>
+    )
+    return (
+    posts()
     )
 }
 
