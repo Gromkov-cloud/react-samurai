@@ -1,5 +1,6 @@
 const CHANGE_INPUT_MESSAGE_DATA = "CHANGE-INPUT-MESSAGE-DATA"
 const CHANGE_MESSAGE_DATA = "CHANGE-MESSAGE-DATA"
+const SCROLL_DOWN = "SCROLL-DOWN"
 
 const store = {
     _state: {
@@ -89,12 +90,18 @@ const store = {
         this._state.MessagesData.dialogMessagesData.messageInput = ""
         this._callSubscriber(this._state)
     },
+    scrollDown(action) {
+        action.element.current.scrollTop = action.element.current.scrollHeight
+    },
 
     dispatch(action) {
+        // debugger
         if (action.type === "CHANGE-INPUT-MESSAGE-DATA") {
             this.changeInputMessageData(action)
         } else if (action.type === "CHANGE-MESSAGE-DATA") {
-            this.changeMessageData()
+            this.changeMessageData(action)
+        } else if (action.type === "SCROLL-DOWN") {
+            this.scrollDown(action)
         }
     }
 }
@@ -105,6 +112,17 @@ export const changeInputMessageDataActionCreator = (message) => {
         injectedMessage: message,
     }
 }
-export const changeMessageDataActionCreator = () => ({type: CHANGE_MESSAGE_DATA})
+export const changeMessageDataActionCreator = () => {
+    return {
+        type: CHANGE_MESSAGE_DATA,
+    }
+}
+
+export const scrollDownActionCreator = (elem) => {
+    return {
+        type: SCROLL_DOWN,
+        element: elem,
+    }
+}
 
 export default store

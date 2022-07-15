@@ -1,11 +1,11 @@
 .messengerContainer {
+
     display: grid;
     grid-template-columns: 1fr 2fr;
 
     background-color: rgb(235, 235, 235);
     box-shadow: 0 0 25px rgba(53, 53, 53, 0.692);
     border-radius: 10px;
-    overflow: hidden;
 }
 
 .peopleList {
@@ -22,8 +22,29 @@
 
 }
 
-.messenger {
-    padding: 20px;
-    max-width: 400px;
+.messagesContainer{
+    max-height: calc(100vh - 267px);
+    overflow: auto;
 }
 
+.messenger {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.messageInput{
+    box-sizing: border-box;
+    width: 100%;
+    height: 6rem;
+    padding: 5px 10px;
+
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    resize: none;
+}
+
+.submitBtn{
+    font-size: 18px;
+    width: 100%;
+}

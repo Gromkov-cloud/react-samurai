@@ -1,12 +1,13 @@
-import styles from  "./DialogMessage.module.css"
+import styles from "./DialogMessage.module.css"
 
 const DialogMessages = (props) => {
+    const messagesList = props.messagesData.map(messageData =>
+         <p key={messageData.id} className={styles.message}>{messageData.message}</p>
+    )
+
     return (
-        props.messagesData.map(messageData =>
-            <div key={messageData.id}>
-                <p className={styles.message}>{messageData.message}</p>
-            </div>
-        )
+        messagesList
     )
 }
+
 export default DialogMessages
