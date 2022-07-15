@@ -21,7 +21,7 @@ const App = function (props) {
                         <Route path="/messages"
                                element={
                                    <Messages MessagesData={props.appState.MessagesData}
-                                             MessagesActions={props.MessagesActions}
+                                             dispatch={props.dispatch}
                                    />
                                }
                         />

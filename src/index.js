@@ -11,13 +11,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const renderAllPage = (state) => {
     root.render(
         <React.StrictMode>
-            <App appState={state} MessagesActions={store.MessagesActions}/>
+            <App appState={state} dispatch={store.dispatch.bind(store)}/>
         </React.StrictMode>
     );
 }
 
-renderAllPage(store._state)
-
 store.subscribe(renderAllPage)
+renderAllPage(store.getState())
 
 reportWebVitals();

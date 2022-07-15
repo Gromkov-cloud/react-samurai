@@ -1,3 +1,6 @@
+const CHANGE_INPUT_MESSAGE_DATA = "CHANGE-INPUT-MESSAGE-DATA"
+const CHANGE_MESSAGE_DATA = "CHANGE-MESSAGE-DATA"
+
 const store = {
     _state: {
         MessagesData: {
@@ -63,27 +66,45 @@ const store = {
             },
         },
     },
-    MessagesActions: {
-        changeInputMessageData(injectedMessage) {
-            store._state.MessagesData.dialogMessagesData.messageInput = injectedMessage
-            reRender(store._state)
-        },
-        changeMessageData() {
-            let newMessageData = {
-                id: Math.random(),
-                message: store._state.MessagesData.dialogMessagesData.messageInput,
-            }
-            store._state.MessagesData.dialogMessagesData.messages.push(newMessageData)
-            store._state.MessagesData.dialogMessagesData.messageInput = ""
-            reRender(store._state)
+    _callSubscriber() {
+    },
+
+    getState() {
+        return this._state
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer
+    },
+
+    changeInputMessageData(action) {
+        this._state.MessagesData.dialogMessagesData.messageInput = action.injectedMessage
+        this._callSubscriber(this._state)
+    },
+    changeMessageData() {
+        let newMessageData = {
+            id: Math.random(),
+            message: this._state.MessagesData.dialogMessagesData.messageInput,
         }
+        this._state.MessagesData.dialogMessagesData.messages.push(newMessageData)
+        this._state.MessagesData.dialogMessagesData.messageInput = ""
+        this._callSubscriber(this._state)
     },
-    subscribe: (observer) => {
-        reRender = observer
-    },
+
+    dispatch(action) {
+        if (action.type === "CHANGE-INPUT-MESSAGE-DATA") {
+            this.changeInputMessageData(action)
+        } else if (action.type === "CHANGE-MESSAGE-DATA") {
+            this.changeMessageData()
+        }
+    }
 }
 
-let reRender = () => {
+export const changeInputMessageDataActionCreator = (message) => {
+    return {
+        type: CHANGE_INPUT_MESSAGE_DATA,
+        injectedMessage: message,
+    }
 }
+export const changeMessageDataActionCreator = () => ({type: CHANGE_MESSAGE_DATA})
 
 export default store

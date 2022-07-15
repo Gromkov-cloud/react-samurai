@@ -1,10 +1,10 @@
-
+import styles from  "./DialogMessage.module.css"
 
 const DialogMessages = (props) => {
     return (
         props.messagesData.map(messageData =>
             <div key={messageData.id}>
-                <span>{messageData.message}</span>
+                <p className={styles.message}>{messageData.message}</p>
             </div>
         )
     )
