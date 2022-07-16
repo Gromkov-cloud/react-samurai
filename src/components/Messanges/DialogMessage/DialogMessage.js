@@ -7,10 +7,6 @@ const DialogMessages = (props) => {
 
     return (
         messagesList
-
-
-
-
     )
 }
 

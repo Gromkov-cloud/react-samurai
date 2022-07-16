@@ -9,6 +9,7 @@ import Music from "./components/Music/Music";
 import Login from "./components/Login/Login";
 
 const App = function (props) {
+
     return (
         <BrowserRouter>
             <div className="page-wrapper">
@@ -18,8 +19,8 @@ const App = function (props) {
                     <Routes>
                         <Route path="/"
                                element={<Profile
-                                    appState={props.appState}
-                                    dispatch={props.dispatch}
+                                   appState={props.appState}
+                                   dispatch={props.dispatch}
                                />}
                         />
                         <Route path="/newsletter"
@@ -27,7 +28,7 @@ const App = function (props) {
                         />
                         <Route path="/messages"
                                element={
-                                   <Messages MessagesData={props.appState.MessagesData}
+                                   <Messages MessagesData={props.appState.messages.MessagesData}
                                              dispatch={props.dispatch}
                                    />
                                }

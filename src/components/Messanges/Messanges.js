@@ -1,7 +1,11 @@
 import s from "./Messanges.module.css"
 import DialogLinks from "./DialogLink/DialogLink.js"
 import DialogMessages from "./DialogMessage/DialogMessage";
-import {changeInputMessageDataActionCreator, changeMessageDataActionCreator} from "../../Redux/messagesReducer";
+import {
+    changeInputMessageData,
+    changeInputMessageDataActionCreator,
+    changeMessageData
+} from "../../Redux/reduxSlices/messagesSlice";
 import React from "react";
 
 const Messages = (props) => {
@@ -13,12 +17,13 @@ const Messages = (props) => {
 
     const onTextareaInput = () => {
         props.dispatch(
-            changeInputMessageDataActionCreator(readTextAreaValue())
+            changeInputMessageData(changeInputMessageDataActionCreator(readTextAreaValue()))
         )
     }
     const onMessageSubmit = () => {
-        props.dispatch(changeMessageDataActionCreator())
+        props.dispatch(changeMessageData())
     }
+
 
     return (
         <div className={s.messengerContainer}>

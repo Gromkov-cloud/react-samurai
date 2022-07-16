@@ -1,12 +1,12 @@
 import s from "./Post.module.css"
 
 const Post = (props) => {
-    const posts = () => props.appState.PostsData.Posts.map(post =>
+    const posts = () => props.appState.posts.PostsData.Posts.map(post =>
         <div className={s.postContainer}
              key={post.likes}
         >
             <div className={s.header}>
-                <img className={s.avatar} src={post.avatar} alt="avatar"></img>
+                <img className={s.avatar} src={post.avatar} alt="avatar"/>
                 <span className={s.author}>{post.author}</span>
             </div>
             <div>
@@ -20,7 +20,7 @@ const Post = (props) => {
         </div>
     )
     return (
-    posts()
+        posts()
     )
 }
 
