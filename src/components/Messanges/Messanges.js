@@ -1,8 +1,7 @@
 import s from "./Messanges.module.css"
 import DialogLinks from "./DialogLink/DialogLink.js"
 import DialogMessages from "./DialogMessage/DialogMessage";
-import {changeInputMessageDataActionCreator, changeMessageDataActionCreator} from "../../Redux/state";
-import {scrollDownActionCreator} from "../../Redux/state";
+import {changeInputMessageDataActionCreator, changeMessageDataActionCreator} from "../../Redux/messagesReducer";
 import React from "react";
 
 const Messages = (props) => {
@@ -18,7 +17,7 @@ const Messages = (props) => {
         )
     }
     const onMessageSubmit = () => {
-        props.dispatch(changeMessageDataActionCreator(textAreaRef))
+        props.dispatch(changeMessageDataActionCreator())
     }
 
     return (

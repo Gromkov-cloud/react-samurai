@@ -1,5 +1,5 @@
 import s from "./PostAdd.module.css"
-import {addPostActionCreator, changeInputPostDataActionCreator} from "../../../Redux/state";
+import {addPostActionCreator, changeInputPostDataActionCreator} from "../../../Redux/postReducer";
 import React from "react";
 
 const PostAdd = (props) => {
