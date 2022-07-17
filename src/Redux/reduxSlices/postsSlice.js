@@ -24,7 +24,6 @@ const postsSlice = createSlice({
         changeInputPostData: (state, action) => {
             state.PostsData.PostInput.title = action.payload.title
             state.PostsData.PostInput.postText = action.payload.postText
-            console.log(action.payload.title, action.payload.postText)
         },
         addPost: (state) => {
             const title = state.PostsData.PostInput.title

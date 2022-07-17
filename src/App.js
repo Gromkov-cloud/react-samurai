@@ -1,14 +1,14 @@
 import "./App.css";
 import Header from "./components/Header/Header";
-import Profile from "./components/Profile/Profile";
+// import Profile from "./components/Profile/Profile";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
-import Messages from "./components/Messanges/Messanges";
 import Newsletter from "./components/Newsletter/Newsletter";
 import Music from "./components/Music/Music";
 import Login from "./components/Login/Login";
+import MessagesContainer from "./components/Messanges/MessagesContainer";
 
-const App = function (props) {
+const App = function ({appStore}) {
 
     return (
         <BrowserRouter>
@@ -17,19 +17,18 @@ const App = function (props) {
                 <div className="page-content">
                     <Sidebar/>
                     <Routes>
-                        <Route path="/"
-                               element={<Profile
-                                   appState={props.appState}
-                                   dispatch={props.dispatch}
-                               />}
-                        />
+                        {/*<Route path="/"*/}
+                        {/*       element={<Profile*/}
+                        {/*           appState={props.appState}*/}
+                        {/*           dispatch={props.dispatch}*/}
+                        {/*       />}*/}
+                        {/*/>*/}
                         <Route path="/newsletter"
                                element={<Newsletter/>}
                         />
                         <Route path="/messages"
                                element={
-                                   <Messages MessagesData={props.appState.messages.MessagesData}
-                                             dispatch={props.dispatch}
+                                   <MessagesContainer appStore={appStore}
                                    />
                                }
                         />

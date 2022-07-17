@@ -56,6 +56,7 @@ const messagesSlice = createSlice({
 
     reducers: {
         changeInputMessageData: (state, action) => {
+
             state.MessagesData.dialogMessagesData.messageInput = action.payload.injectedMessage
         },
         changeMessageData: (state) => {
@@ -63,8 +64,9 @@ const messagesSlice = createSlice({
                 id: Math.random(),
                 message: state.MessagesData.dialogMessagesData.messageInput,
             }
-            state.MessagesData.dialogMessagesData.messages.push(newMessageData)
+
             state.MessagesData.dialogMessagesData.messageInput = ""
+            state.MessagesData.dialogMessagesData.messages.push(newMessageData)
         }
     }
 
