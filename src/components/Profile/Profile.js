@@ -1,7 +1,7 @@
 import Posts from "../Posts/Posts"
 import s from "./Profile.module.css"
 
-const Profile = (props) => {
+const Profile = () => {
     return (
         <div>
             <section>
@@ -17,12 +17,8 @@ const Profile = (props) => {
                     </div>
                 </div>
             </section>
-            <Posts
-                appState={props.appState}
-                dispatch={props.dispatch}
-            />
+            <Posts/>
         </div>
-
     )
 }
 

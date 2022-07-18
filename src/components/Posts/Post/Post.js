@@ -1,7 +1,7 @@
 import s from "./Post.module.css"
 
 const Post = (props) => {
-    const posts = () => props.appState.posts.PostsData.Posts.map(post =>
+    const posts = () => props.posts.map(post =>
         <div className={s.postContainer}
              key={post.likes}
         >
@@ -19,6 +19,7 @@ const Post = (props) => {
             </span>
         </div>
     )
+
     return (
         posts()
     )

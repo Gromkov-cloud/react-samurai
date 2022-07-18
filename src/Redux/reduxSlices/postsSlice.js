@@ -22,12 +22,17 @@ const postsSlice = createSlice({
 
     reducers: {
         changeInputPostData: (state, action) => {
-            state.PostsData.PostInput.title = action.payload.title
-            state.PostsData.PostInput.postText = action.payload.postText
+            if (action.payload.eventParent === "POST-TITLE") {
+                console.log(action.payload)
+                state.PostsData.PostInput.title = action.payload.text
+            } else if (action.payload.eventParent === "POST-BODY") {
+                state.PostsData.PostInput.postText = action.payload.text
+            }
         },
         addPost: (state) => {
             const title = state.PostsData.PostInput.title
             const postText = state.PostsData.PostInput.postText
+            console.log(state.PostsData.PostInput.postText)
             if (title || postText !== "") {
                 let newPostData = {
                     title: title,
@@ -44,10 +49,10 @@ const postsSlice = createSlice({
     }
 })
 
-export const changeInputPostDataActionCreator = (title, postText) => {
+export const changeInputPostDataActionCreator = (eventParent, text) => {
     return {
-        title: title,
-        postText: postText,
+        eventParent: eventParent,
+        text: text,
     }
 }
 

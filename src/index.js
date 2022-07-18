@@ -12,7 +12,7 @@ const renderAllPage = (store) => {
     root.render(
         <Provider store={store}>
             <React.StrictMode>
-                <App appStore={store}/>
+                <App appState={store.getState()}/>
             </React.StrictMode>
         </Provider>
     );

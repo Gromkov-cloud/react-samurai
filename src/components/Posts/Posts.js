@@ -1,14 +1,11 @@
-import Post from "./Post/Post"
-import PostAdd from "./PostAdd/PostAdd"
+import PostAddContainer from "./PostAdd/PostAddContainer";
+import PostContainer from "./Post/PostContainer";
 
-const Posts = (props) => {
-
+const Posts = () => {
     return (
         <>
-            <PostAdd dispatch={props.dispatch}
-                     appState={props.appState}
-            />
-            <Post appState={props.appState}/>
+            <PostAddContainer/>
+            <PostContainer/>
         </>
     )
 }
