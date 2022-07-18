@@ -5,28 +5,27 @@ import {
     changeInputMessageDataActionCreator,
     changeMessageData
 } from "../../Redux/reduxSlices/messagesSlice";
+import {connect} from "react-redux";
 
-const MessagesContainer = ({appStore}) => {
-
-    const messagesData = appStore.getState().messages.MessagesData
-
-    const onTextareaInput = (e) => {
-        appStore.dispatch(
-            changeInputMessageData(changeInputMessageDataActionCreator(e.target.value))
-        )
+const mapStateToProps = (state) => (
+    {
+        linksData: state.messages.MessagesData.dialogLinksData,
+        messagesData: state.messages.MessagesData.dialogMessagesData.messages,
+        textAreaValue: state.messages.MessagesData.dialogMessagesData.messageInput
     }
-    const onMessageSubmit = () => {
-        appStore.dispatch(changeMessageData())
+)
+const mapDispatchToProps = (dispatch) => (
+    {
+        onTextareaInput (e) {
+            dispatch(
+                changeInputMessageData(changeInputMessageDataActionCreator(e.target.value))
+            )
+        },
+        onMessageSubmit () {
+            dispatch(changeMessageData())
+        }
     }
-
-    return (
-        <Messages onTextareaInput={onTextareaInput}
-                  onMessageSubmit={onMessageSubmit}
-                  linksData={messagesData.dialogLinksData}
-                  messagesData={messagesData.dialogMessagesData.messages}
-                  textAreaValue={messagesData.dialogMessagesData.messageInput}
-        />
-    )
-}
+)
+const MessagesContainer = connect(mapStateToProps, mapDispatchToProps) (Messages)
 
 export default MessagesContainer
