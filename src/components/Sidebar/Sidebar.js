@@ -14,19 +14,27 @@ const Sidebar = () => {
                         </NavLink>
                     </li>
                     <li className={s.item}>
+                        <NavLink to="/users"
+                                 className={navData => navData.isActive ? `${s.link} ${s.active}` : s.link}
+                        >
+                            Find Users
+                        </NavLink>
+                    </li>
+                    <li className={s.item}>
+                        <NavLink to="/messages"
+                                 className={navData => navData.isActive ? `${s.link} ${s.active}` : s.link}
+                        >
+                            Messages
+                        </NavLink>
+                    </li>
+                    <li className={s.item}>
                         <NavLink to="/newsletter"
                                  className={navData => navData.isActive ? `${s.link} ${s.active}` : s.link}
                         >
                             Newsletter
                         </NavLink>
                     </li>
-                    <li className={s.item}>
-                        <NavLink to="/messages"
-                              className={navData => navData.isActive ? `${s.link} ${s.active}` : s.link}
-                        >
-                            Messages
-                        </NavLink>
-                    </li>
+
                     <li className={s.item}>
                         <NavLink to="/music"
                                  className={navData => navData.isActive ? `${s.link} ${s.active}` : s.link}

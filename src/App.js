@@ -7,6 +7,7 @@ import Newsletter from "./components/Newsletter/Newsletter";
 import Music from "./components/Music/Music";
 import Login from "./components/Login/Login";
 import MessagesContainer from "./components/Messanges/MessagesContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 const App = function () {
 
@@ -18,6 +19,7 @@ const App = function () {
                     <Sidebar/>
                     <Routes>
                         <Route path="/" element={<Profile/>}/>
+                        <Route path="/users" element={<UsersContainer/>}/>
                         <Route path="/newsletter" element={<Newsletter/>}/>
                         <Route path="/messages" element={<MessagesContainer/>}/>
                         <Route path="/music" element={<Music/>}/>
