@@ -5,7 +5,7 @@ const Users = (props) => {
         <div className={styles.userCard} key={user.id}>
             <div className={styles.userThumb}>
                 <img src="https://imgholder.ru/112x112" alt="ava"/>
-                <button onClick={props.onFollowBtnClick}>Follow</button>
+                <button onClick={() => {props.onFollowBtnClick(user.id)}}>{user.followed ? "Unfollow" : "Follow"}</button>
             </div>
             <div className={styles.userCardBody}>
                 <div className={styles.useInfo}>

@@ -1,49 +1,65 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const usersSlice = createSlice({
-    name: "users",
-    initialState: [
-        {
-            id: 1,
-            name: "Alex S.",
-            country: "Russia",
-            city: "Moscow",
-            description: "Keep learning React",
-            follow: true,
-        },
-        {
-            id: 2,
-            name: "Andrew B.",
-            country: "Netherlands",
-            city: "Amsterdam",
-            description: "React is cool",
-            follow: false,
-        },
-        {
-            id: 3,
-            name: "Viktoria N.",
-            country: "Iceland",
-            city: "Reykjavik",
-            description: "React is cool",
-            follow: true,
-        },
-        // {
-        //     id: 4,
-        //     name: "Viktoria N.",
-        //     country: "Iceland",
-        //     city: "Reykjavik",
-        //     description: "React is cool",
-        //     follow: false,
-        // },
-    ],
+    name: "usersPage",
+    initialState: {
+        users: [
+            {
+                id: 1,
+                name: "Alex S.",
+                country: "Russia",
+                city: "Moscow",
+                description: "Keep learning React",
+                followed: true,
+            },
+            {
+                id: 2,
+                name: "Andrew B.",
+                country: "Netherlands",
+                city: "Amsterdam",
+                description: "React is cool",
+                followed: false,
+            },
+            {
+                id: 3,
+                name: "Viktoria N.",
+                country: "Iceland",
+                city: "Reykjavik",
+                description: "React is cool",
+                followed: true,
+            },
+            {
+                id: 4,
+                name: "Viktoria N.",
+                country: "Iceland",
+                city: "Reykjavik",
+                description: "React is cool",
+                followed: false,
+            },
+        ],
+    },
     reducers: {
-        followToggle(state, action) {
-            console.log(action.payload.e)
+        followToggle: (state, action) => {
+            const userId = action.payload.id
+
+            state.users.forEach(user => {
+                if (user.id === userId) {
+                    if (user.followed) {
+                        user.followed = false
+                    } else {
+                        user.followed = true
+                    }
+                }
+            })
         },
-        loadMoreUsers() {
+        loadMoreUsers: (state) => {
 
         }
     }
+})
+
+export const followToggleActionCreator = (userId) => ({
+    id: userId,
 })
 
 export const {followToggle, loadMoreUsers} = usersSlice.actions

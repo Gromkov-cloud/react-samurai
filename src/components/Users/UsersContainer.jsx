@@ -1,16 +1,18 @@
 import {connect} from "react-redux";
 import Users from "./Users";
-import {followToggle, loadMoreUsers} from "../../Redux/reduxSlices/usersSlice";
+import {followToggle, followToggleActionCreator, loadMoreUsers} from "../../Redux/reduxSlices/usersSlice";
 
-const mapStateToProps = (props) => (
+const mapStateToProps = (state) => (
     {
-        users: props.users,
+        users: state.usersPage.users
     }
 )
+
 const mapDispatchToProps = (dispatch) => (
     {
-        onFollowBtnClick(e) {
-            dispatch(followToggle(e))
+        onFollowBtnClick(id) {
+            const data = followToggleActionCreator(id)
+            dispatch(followToggle(data))
         },
         onLoadMoreBtnClick() {
             dispatch(loadMoreUsers())
