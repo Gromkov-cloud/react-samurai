@@ -23,7 +23,6 @@ const mapDispatchToProps = (dispatch) => (
         },
         addNewUsers(users) {
             const data = setUsersActionCreator(users)
-            console.log(data)
             dispatch(setUsers(data))
         },
         onLoadMoreBtnClick() {

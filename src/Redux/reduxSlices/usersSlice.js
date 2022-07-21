@@ -24,9 +24,7 @@ const usersSlice = createSlice({
         },
         setUsers: (state, action) => {
             const newUsers = action.payload.users
-            newUsers.forEach(user => {
-                state.users.push(user)
-            })
+                state.users.push(...newUsers)
         }
     }
 })
