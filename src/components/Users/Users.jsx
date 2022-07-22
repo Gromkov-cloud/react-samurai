@@ -5,11 +5,24 @@ import axios from "axios";
 class Users extends React.Component {
 
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-                const users = response.data.items
-                this.props.addNewUsers(users)
-            }
-        )
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.initialPage}&count=${this.props.usersCount}`)
+            .then(response => {
+                    const usersData = response.data.items
+                    const usersCount = response.data.totalCount
+                    this.props.setData(usersData, usersCount)
+                }
+            )
+    }
+
+    setDotes() {
+        if (this.props.lastPagePoints) {
+
+        } else if (this.props.firstPagePoints) {
+
+        } else {
+
+        }
     }
 
     render() {
@@ -41,11 +54,26 @@ class Users extends React.Component {
                         </div>
                     ))
                 }
-                <button className={styles.loadMoreBtn}
-                        onClick={this.loadMore}
-                >
-                    Load more
-                </button>
+                <div className={styles.pagination}>
+                    <p>Select page:</p>
+                    {
+                        this.props.buttonsArr.map((button) => (
+                                <span key={button.id}
+                                      className={`${styles.paginationBtn} 
+                                      ${button.id === this.props.currentPage ? styles.paginationBtnCurrent : ''} 
+                                      ${button.style && button.id === 1 ? styles.firstBtnPoints : ""}
+                                      ${button.style && button.id !== 1 ? styles.lastBtnPoints : ""}`
+                                      }
+                                      onClick={() => {
+                                          this.props.onPaginationBtnClick(button.id, this.props.usersPerPage)
+                                      }}
+                                >
+                                    {button.id}
+                                </span>
+                            )
+                        )
+                    }
+                </div>
             </div>
         )
     }
