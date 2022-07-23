@@ -1,6 +1,8 @@
 import {connect} from "react-redux";
 import Users from "./Users";
 import {
+    changeFetchingStatus,
+    changeFetchingStatusActionCreator,
     changePage,
     changePageActionCreator,
     followToggle,
@@ -20,6 +22,7 @@ const mapStateToProps = (state) => (
         currentPage: state.usersPage.usersRequestData.currentPage,
         buttonsArr: state.usersPage.usersRequestData.buttonsArr,
         usersPerPage: state.usersPage.usersRequestData.usersPerPage,
+        isFetching: state.usersPage.isFetching
     }
 )
 
@@ -34,14 +37,20 @@ const mapDispatchToProps = (dispatch) => (
             dispatch(followToggle(data))
         },
         onPaginationBtnClick(buttonId, usersPerPage) {
+            dispatch(changeFetchingStatus({isFetching: true}))
             axios
                 .get(`https://social-network.samuraijs.com/api/1.0/users?page=${buttonId}&count=${usersPerPage}`)
                 .then(response => {
                         const data = changePageActionCreator(response.data, buttonId)
                         dispatch(changePage(data))
+                        dispatch(changeFetchingStatus({isFetching: false}))
                     }
                 )
 
+        },
+        onFetching(isFetching) {
+            const data = changeFetchingStatusActionCreator(isFetching)
+            dispatch(changeFetchingStatus(data))
         }
     }
 )

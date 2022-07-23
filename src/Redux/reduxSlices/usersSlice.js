@@ -12,7 +12,8 @@ const usersSlice = createSlice({
             buttonsToShow: 5,
             buttonsArr: [],
             lastBtnId: 0,
-        }
+        },
+        isFetching: true,
     },
     reducers: {
         setInitialData: (state, action) => {
@@ -112,6 +113,9 @@ const usersSlice = createSlice({
             state.usersRequestData.currentPage = btnId
             state.users = action.payload.data.items
         },
+        changeFetchingStatus: (state, action) => {
+            state.isFetching = action.payload.isFetching
+        },
     }
 })
 
@@ -126,7 +130,11 @@ export const changePageActionCreator = (data, buttonId) => ({
     data: data,
     buttonId: buttonId,
 })
+export const changeFetchingStatusActionCreator = (isFetching) => ({
+    isFetching: isFetching,
+})
 
-export const {followToggle, changePage, setInitialData} = usersSlice.actions
+
+export const {followToggle, changePage, setInitialData, changeFetchingStatus} = usersSlice.actions
 
 export default usersSlice
