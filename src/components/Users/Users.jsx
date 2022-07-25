@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Users.module.css"
 import axios from "axios";
+import {NavLink} from "react-router-dom";
 
 class Users extends React.Component {
 
@@ -19,12 +20,16 @@ class Users extends React.Component {
     render() {
         return (
             <div className={styles.usersPage}>
-                <span className={`${this.props.isFetching ? styles.spinner : styles.spinnerDisabled}`}/>
-                <div className={`${this.props.isFetching ? styles.usersCardsContainerFetching : styles.usersCardsContainer}`}>
+                <span className={
+                    `${this.props.isFetching ? styles.spinner : styles.spinnerDisabled}`}
+                />
+                <div className={
+                    `${this.props.isFetching ? styles.usersCardsContainerFetching : styles.usersCardsContainer}`}
+                >
                     {
                         this.props.users.map(user => (
                             <div className={styles.userCard} key={user.id}>
-                                <div className={styles.userThumb}>
+                                <NavLink to={`/profile/${user.id}`} className={styles.userThumb}>
                                     <img src={user.photos.large ? user.photos.large : "https://imgholder.ru/100x100"}
                                          alt="ava"/>
                                     <button onClick={() => {
@@ -32,12 +37,14 @@ class Users extends React.Component {
                                     }}>
                                         {user.followed ? "Unfollow" : "Follow"}
                                     </button>
-                                </div>
+                                </NavLink>
                                 <div className={styles.userCardBody}>
                                     <div className={styles.useInfo}>
                                         <span className={styles.userName}>{user.name}</span>
                                         <span
-                                            className={styles.userStatus}>{user.status ? user.status : "Default Status"}</span>
+                                            className={
+                                            styles.userStatus}>{user.status ? user.status : "Default Status"}
+                                        </span>
                                     </div>
                                     <div className={styles.userLocation}>
                                         <span>{user.country ? user.country : "Country is undefined"},</span>

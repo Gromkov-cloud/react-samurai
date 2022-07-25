@@ -7,34 +7,36 @@ section {
     overflow: hidden;
     border-radius: 10px;
 }
-  
-  .userPage{
+
+.userPage {
     display: flex;
-  }
-  
-  .userPoster{
+}
+
+.userPoster {
     width: 100%;
-  }
-  
-  .userPage {
+}
+
+.userPage {
     display: flex;
-  }
-  
-  .avatar {
-    max-width: 300px;
-  }
+}
+
+.avatar {
+    display: block;
+    width: 300px;
+    height: auto;
+}
 
 .userInfo {
-  padding: 20px;
+    padding: 20px;
 }
 
-.name{
-  font-size: 30px;
-  font-weight: 600;
+.name {
+    font-size: 30px;
+    font-weight: 600;
 }
 
-.link{
-  font-size: 18px;
-  font-weight: 500;
-  margin: 0 0 10px 0;
+.link {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 10px 0;
 }
