@@ -2,19 +2,14 @@ import Posts from "../Posts/Posts"
 import s from "./Profile.module.css"
 import {useParams} from "react-router-dom";
 import {useEffect} from "react";
-import axios from "axios";
+import {useDispatch} from "react-redux";
+import {fetchUserData} from "../../Redux/reduxSlices/profileSlice";
 
 const Profile = (props) => {
-
+    const dispatch = useDispatch()
     const userId = useParams().id
     useEffect(() => {
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => {
-                    console.log(response.data)
-                    props.sendUserData(response.data)
-                }
-            )
+        dispatch(fetchUserData(userId))
     })
 
     return (
