@@ -100,8 +100,15 @@
 }
 
 .userName {
+    color: black;
+    text-decoration: none;
     font-size: 24px;
     font-weight: 700;
+}
+
+.userName:hover{
+    color: cadetblue;
+    text-decoration: underline;
 }
 
 .userStatus {

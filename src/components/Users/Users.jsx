@@ -29,21 +29,26 @@ class Users extends React.Component {
                     {
                         this.props.users.map(user => (
                             <div className={styles.userCard} key={user.id}>
-                                <NavLink to={`/profile/${user.id}`} className={styles.userThumb}>
-                                    <img src={user.photos.large ? user.photos.large : "https://imgholder.ru/100x100"}
-                                         alt="ava"/>
+                                <div className={styles.userThumb}>
+                                    <NavLink to={`/profile/${user.id}`}>
+                                        <img
+                                            src={user.photos.large ? user.photos.large : "https://imgholder.ru/100x100"}
+                                            alt="ava"/>
+                                    </NavLink>
                                     <button onClick={() => {
                                         this.props.onFollowBtnClick(user.id)
                                     }}>
                                         {user.followed ? "Unfollow" : "Follow"}
                                     </button>
-                                </NavLink>
+                                </div>
                                 <div className={styles.userCardBody}>
                                     <div className={styles.useInfo}>
-                                        <span className={styles.userName}>{user.name}</span>
+                                        <NavLink to={`/profile/${user.id}`} className={styles.userName}>
+                                            {user.name}
+                                        </NavLink>
                                         <span
                                             className={
-                                            styles.userStatus}>{user.status ? user.status : "Default Status"}
+                                                styles.userStatus}>{user.status ? user.status : "Default Status"}
                                         </span>
                                     </div>
                                     <div className={styles.userLocation}>
