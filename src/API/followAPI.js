@@ -1,5 +1,5 @@
 export const followAPI = {
-    followToggle:  async (userId, method) => {
+    followRequest:  async (userId, method) => {
          return  await fetch(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
             method: method,
             credentials: "include",

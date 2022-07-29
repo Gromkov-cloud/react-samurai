@@ -1,31 +1,19 @@
 import React, {useEffect} from "react";
 import styles from "./Users.module.css"
-import axios from "axios";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {
     changeFollowButtonType,
     fetchFollowData,
-    setUnfollowData,
 } from "../../Redux/reduxSlices/followSlice";
+import {fetchUsers} from "../../Redux/reduxSlices/usersSlice";
 
 const Users = (props) => {
 
     const dispatch = useDispatch()
     const followedUserId = useSelector((state) => state.followToggle.followedUserId)
     useEffect(() => {
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.initialPage}&count=${props.usersCount}`, {
-                withCredentials: true
-            })
-            .then(response => {
-                    const usersData = response.data.items
-                    const usersCount = response.data.totalCount
-                    props.setData(usersData, usersCount)
-                    props.onFetching(false)
-                    dispatch(setUnfollowData(usersData))
-                }
-            )
+        dispatch(fetchUsers())
     }, [])
 
 

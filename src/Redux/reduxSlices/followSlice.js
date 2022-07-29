@@ -3,15 +3,15 @@ import {followAPI} from "../../API/followAPI";
 
 export const fetchFollowData = createAsyncThunk(
     "followToggle/follow",
-    async (userId, {dispatch,getState}) => {
+    async ({userId}, {dispatch,getState}) => {
         try {
 
             const hasUserSubscriptionsUserId = getState().followToggle.userSubscriptions.indexOf(userId) === -1
 
             if (hasUserSubscriptionsUserId) {
-                await followAPI.followToggle(userId, "Post")
+                await followAPI.followRequest(userId, "Post")
             } else {
-                await followAPI.followToggle(userId, "Delete")
+                await followAPI.followRequest(userId, "Delete")
             }
 
             dispatch(changeFollowButtonType(userId))

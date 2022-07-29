@@ -2,16 +2,11 @@ import {connect} from "react-redux";
 import Users from "./Users";
 import {
     changeFetchingStatus,
-    changeFetchingStatusActionCreator,
     changePage,
     changePageActionCreator,
-    followToggle,
-    followToggleActionCreator,
-    setInitialData,
-    setInitialDataActionCreator
 } from "../../Redux/reduxSlices/usersSlice";
 import axios from "axios";
-import {changeFollowButtonType, setUnfollowData} from "../../Redux/reduxSlices/followSlice";
+import {setUnfollowData} from "../../Redux/reduxSlices/followSlice";
 
 
 const mapStateToProps = (state) => (
@@ -29,14 +24,6 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => (
     {
-        setData(usersData, totalUsersCount) {
-            const data = setInitialDataActionCreator(usersData, totalUsersCount)
-            dispatch(setInitialData(data))
-        },
-        onFollowBtnClick(id) {
-            const data = followToggleActionCreator(id)
-            dispatch(followToggle(data))
-        },
         onPaginationBtnClick(buttonId, usersPerPage) {
             dispatch(changeFetchingStatus({isFetching: true}))
             axios
@@ -51,10 +38,6 @@ const mapDispatchToProps = (dispatch) => (
                     }
                 )
 
-        },
-        onFetching(isFetching) {
-            const data = changeFetchingStatusActionCreator(isFetching)
-            dispatch(changeFetchingStatus(data))
         }
     }
 )

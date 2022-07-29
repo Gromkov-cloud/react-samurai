@@ -1,4 +1,21 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {setUnfollowData} from "./followSlice";
+import {usersAPI} from "../../API/usersAPI";
+
+export const fetchUsers = createAsyncThunk(
+    "usersPage/fetchUsers",
+    async (_, {dispatch, getState}) => {
+        const {initialPage, usersPerPage} = getState().usersPage.usersRequestData
+
+        const response = await usersAPI.fetchUsers(initialPage, usersPerPage)
+        const data = await response.json()
+
+        const users = data.items
+        dispatch(setInitialData(setInitialDataActionCreator(users, data.totalCount)))
+        dispatch(setUnfollowData(users))
+    }
+)
+
 
 const usersSlice = createSlice({
     name: "usersPage",
@@ -55,11 +72,7 @@ const usersSlice = createSlice({
 
             state.users.forEach(user => {
                 if (user.id === userId) {
-                    if (user.followed) {
-                        user.followed = false
-                    } else {
-                        user.followed = true
-                    }
+                    user.followed = !user.followed;
                 }
             })
         },
@@ -72,7 +85,7 @@ const usersSlice = createSlice({
             const newBtnArr = []
 
             // generating buttons array
-            // array when current page in middle
+            //  when current page in middle
             if (btnId - 1 >= lastBtnId - btnId && btnId < pagesCount - Math.floor(buttonsToShow / 2)) {
                 for (let i = btnId - Math.floor(buttonsToShow / 2); i <= btnId + Math.floor(buttonsToShow / 2); i++) {
                     newBtnArr.push({id: i})
@@ -115,6 +128,17 @@ const usersSlice = createSlice({
         },
         changeFetchingStatus: (state, action) => {
             state.isFetching = action.payload.isFetching
+        },
+    },
+    extraReducers: {
+        [fetchUsers.pending]: (state) => {
+            state.isFetching = true
+        },
+        [fetchUsers.fulfilled]: (state) => {
+            state.isFetching = false
+        },
+        [fetchUsers.rejected]: (state) => {
+            state.isFetching = false
         },
     }
 })
