@@ -1,11 +1,13 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {profileAPI} from "../../API/profileAPI";
 
 export const fetchUserData = createAsyncThunk(
     "profilePage/fetchUserData",
     async (id) => {
-        const response =  await fetch(`https://social-network.samuraijs.com/api/1.0/profile/${id}`)
+        const response = await profileAPI.getUserData(id)
         return await response.json()
     }
+
 )
 
 const profileSlice = createSlice({
