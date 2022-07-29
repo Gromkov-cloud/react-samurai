@@ -1,27 +1,19 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {followAPI} from "../../API/followAPI";
 
 export const fetchFollowData = createAsyncThunk(
     "followToggle/follow",
-    async (userId, {dispatch, getState}) => {
+    async (userId, {dispatch,getState}) => {
         try {
-            const state = getState()
-            let method
 
-            if (state.followToggle.userSubscriptions.indexOf(userId) === -1) {
-                method = "Post"
+            const hasUserSubscriptionsUserId = getState().followToggle.userSubscriptions.indexOf(userId) === -1
+
+            if (hasUserSubscriptionsUserId) {
+                await followAPI.followToggle(userId, "Post")
             } else {
-                method = "Delete"
+                await followAPI.followToggle(userId, "Delete")
             }
 
-            const response = await fetch(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
-                method: method,
-                credentials: "include",
-                headers: {
-                    "API-KEY": "3ef1f56a-8110-442d-b381-480f005cf1b2"
-                }
-            })
-
-            const data = await response.json()
             dispatch(changeFollowButtonType(userId))
             dispatch(toggleBtnText(userId))
 
@@ -55,14 +47,16 @@ const followToggle = createSlice({
         },
         changeFollowButtonType: (state, action) => {
             if (state.followedUserId.some(userId => userId === action.payload)) {
-                console.log(state.followedUserId.filter(userId => userId !== action.payload))
                 state.followedUserId = state.followedUserId.filter(userId => userId !== action.payload)
             } else {
-                console.log("pushed")
                 state.followedUserId.push(action.payload)
             }
         },
-
+        getUserSubscriptions: (state) => {
+            const subscriptions = [...state.userSubscriptions]
+            console.log(subscriptions)
+            return subscriptions
+        },
     },
     extraReducers: {
         [fetchFollowData.pending]: (state) => {
