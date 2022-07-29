@@ -1,11 +1,11 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {loginAPI} from "../../API/loginAPI";
 
 export const auth = createAsyncThunk(
     "login/auth",
     async (_, {dispatch}) => {
         try {
-            const response = await fetch(`https://social-network.samuraijs.com/api/1.0/auth/me`,
-                {credentials: "include"})
+            const response = await loginAPI.login()
             const data = await response.json()
 
             if (data.resultCode) {

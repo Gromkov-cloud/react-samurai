@@ -7,7 +7,7 @@ const Sidebar = () => {
             <nav>
                 <ul className={s.list}>
                     <li className={s.item}>
-                        <NavLink to="/profile/"
+                        <NavLink to="/profile/25017"
                                  className={navData => navData.isActive ? `${s.link} ${s.active}` : s.link}
                         >
                             My profile
