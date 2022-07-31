@@ -30,11 +30,15 @@ const loginSlice = createSlice({
                 login: null,
             },
             status: null,
-            error: null
+            error: null,
+            isAuth: null
         },
         reducers: {
             setUserData: (state, action) => {
                 state.userData = action.payload
+                if (!action.payload.resultCode) {
+                    state.isAuth = true
+                }
             },
             showError: (state, action) => {
                 console.log(action.payload)

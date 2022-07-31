@@ -1,9 +1,11 @@
 import s from "./Messanges.module.css"
 import DialogLinks from "./DialogLink/DialogLink.js"
 import DialogMessages from "./DialogMessage/DialogMessage";
-import React from "react";
+import {useLoginRedirect} from "../../Hooks/useLoginRedirect";
 
 const Messages = (props) => {
+
+    useLoginRedirect()
 
     return (
         <div className={s.messengerContainer}>

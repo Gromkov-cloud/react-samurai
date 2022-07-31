@@ -5,6 +5,7 @@ import usersSlice from "./reduxSlices/usersSlice";
 import profileSlice from "./reduxSlices/profileSlice";
 import loginSlice from "./reduxSlices/loginSlice"
 import followToggle from "./reduxSlices/followSlice";
+import paginationSlice from "./reduxSlices/paginationSlice";
 
 const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
         usersPage: usersSlice.reducer,
         profilePage: profileSlice.reducer,
         loginPage: loginSlice.reducer,
-        followToggle: followToggle.reducer
+        followToggle: followToggle.reducer,
+        pagination: paginationSlice.reducer
     }
 })
 

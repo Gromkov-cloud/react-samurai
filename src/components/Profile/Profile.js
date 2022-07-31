@@ -4,8 +4,12 @@ import {useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {fetchUserData} from "../../Redux/reduxSlices/profileSlice";
+import {useLoginRedirect} from "../../Hooks/useLoginRedirect";
 
 const Profile = (props) => {
+
+    useLoginRedirect()
+
     const dispatch = useDispatch()
     const userId = useParams().id
     useEffect(() => {

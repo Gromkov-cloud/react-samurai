@@ -127,7 +127,8 @@ const usersSlice = createSlice({
             state.users = action.payload.data.items
         },
         changeFetchingStatus: (state, action) => {
-            state.isFetching = action.payload.isFetching
+            console.log("asdasd")
+            state.isFetching = action.payload
         },
     },
     extraReducers: {

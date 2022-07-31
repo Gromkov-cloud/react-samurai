@@ -34,7 +34,6 @@ const Sidebar = () => {
                             Newsletter
                         </NavLink>
                     </li>
-
                     <li className={s.item}>
                         <NavLink to="/music"
                                  className={navData => navData.isActive ? `${s.link} ${s.active}` : s.link}

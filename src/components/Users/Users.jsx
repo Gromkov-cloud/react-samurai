@@ -7,30 +7,26 @@ import {
     fetchFollowData,
 } from "../../Redux/reduxSlices/followSlice";
 import {fetchUsers} from "../../Redux/reduxSlices/usersSlice";
+import {fetchUsersPage} from "../../Redux/reduxSlices/paginationSlice";
 
 const Users = (props) => {
 
     const dispatch = useDispatch()
     const followedUserId = useSelector((state) => state.followToggle.followedUserId)
+    const subscriptions = useSelector(state => state.followToggle.userSubscriptions)
+
     useEffect(() => {
         dispatch(fetchUsers())
     }, [])
 
 
-    const subscriptions = useSelector(state => state.followToggle.userSubscriptions)
-
+    const onPaginationBtnClick = (pageNum, usersCount) => dispatch(fetchUsersPage(pageNum, usersCount))
     const onFollowBtnClick = (userId) => {
         dispatch(fetchFollowData(userId))
         dispatch(changeFollowButtonType(userId))
     }
+    const followButtonText = (userId) => (subscriptions.indexOf(userId) === -1) ? "Follow" : "Unfollow"
 
-    const followButtonText = (userId) => {
-        if (subscriptions.indexOf(userId) === -1) {
-            return "Follow"
-        } else {
-            return "Unfollow"
-        }
-    }
 
     return (
         <div className={styles.usersPage}>
@@ -87,7 +83,7 @@ const Users = (props) => {
                                       ${button.style && button.id !== 1 ? styles.lastBtnPoints : ""}`
                                       }
                                       onClick={() => {
-                                          props.onPaginationBtnClick(button.id, props.usersPerPage)
+                                          onPaginationBtnClick(button.id)
                                       }}
                                 >
                                     {button.id}

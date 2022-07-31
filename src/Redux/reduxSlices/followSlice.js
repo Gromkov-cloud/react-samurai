@@ -3,9 +3,8 @@ import {followAPI} from "../../API/followAPI";
 
 export const fetchFollowData = createAsyncThunk(
     "followToggle/follow",
-    async ({userId}, {dispatch,getState}) => {
+    async (userId, {dispatch,getState}) => {
         try {
-
             const hasUserSubscriptionsUserId = getState().followToggle.userSubscriptions.indexOf(userId) === -1
 
             if (hasUserSubscriptionsUserId) {
@@ -54,7 +53,6 @@ const followToggle = createSlice({
         },
         getUserSubscriptions: (state) => {
             const subscriptions = [...state.userSubscriptions]
-            console.log(subscriptions)
             return subscriptions
         },
     },

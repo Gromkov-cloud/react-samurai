@@ -4,7 +4,7 @@ export const followAPI = {
             method: method,
             credentials: "include",
             headers: {
-                "API-KEY": "3ef1f56a-8110-442d-b381-480f005cf1b2"
+                "API-KEY": "d8cc6de0-975e-4755-a3ab-7bc830ca2dba"
             }
         })
     }
