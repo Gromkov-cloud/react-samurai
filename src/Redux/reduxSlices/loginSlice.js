@@ -3,9 +3,10 @@ import {loginAPI} from "../../API/loginAPI";
 
 export const auth = createAsyncThunk(
     "login/auth",
-    async (_, {dispatch}) => {
+    async (_, {dispatch, getState}) => {
         try {
             const response = await loginAPI.login()
+
             const data = await response.json()
 
             if (data.resultCode) {
@@ -17,6 +18,7 @@ export const auth = createAsyncThunk(
 
         } catch (e) {
             dispatch(showError(e.message))
+            getState().loginPage.isAuth = false
         }
     }
 )
@@ -31,17 +33,15 @@ const loginSlice = createSlice({
             },
             status: null,
             error: null,
-            isAuth: null
+            isAuth: true
         },
         reducers: {
             setUserData: (state, action) => {
                 state.userData = action.payload
-                if (!action.payload.resultCode) {
-                    state.isAuth = true
-                }
+                !action.payload.resultCode ?
+                    state.isAuth = true : state.isAuth = false
             },
             showError: (state, action) => {
-                console.log(action.payload)
                 state.error = action.payload
             }
         },

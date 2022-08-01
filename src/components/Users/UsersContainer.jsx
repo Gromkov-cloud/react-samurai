@@ -1,12 +1,5 @@
 import {connect} from "react-redux";
 import Users from "./Users";
-import {
-    changeFetchingStatus,
-    changePage,
-    changePageActionCreator,
-} from "../../Redux/reduxSlices/usersSlice";
-import axios from "axios";
-import {setUnfollowData} from "../../Redux/reduxSlices/followSlice";
 
 
 const mapStateToProps = (state) => (
@@ -22,26 +15,6 @@ const mapStateToProps = (state) => (
     }
 )
 
-const mapDispatchToProps = (dispatch) => (
-    {
-        onPaginationBtnClick(buttonId, usersPerPage) {
-            dispatch(changeFetchingStatus({isFetching: true}))
-            axios
-                .get(`https://social-network.samuraijs.com/api/1.0/users?page=${buttonId}&count=${usersPerPage}`, {
-                    withCredentials: true
-                })
-                .then(response => {
-                        const data = changePageActionCreator(response.data, buttonId)
-                        dispatch(changePage(data))
-                        dispatch(changeFetchingStatus({isFetching: false}))
-                        dispatch(setUnfollowData(data.data.items))
-                    }
-                )
-
-        }
-    }
-)
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+const UsersContainer = connect(mapStateToProps, {})(Users)
 
 export default UsersContainer

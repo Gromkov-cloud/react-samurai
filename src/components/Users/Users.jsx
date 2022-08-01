@@ -19,7 +19,6 @@ const Users = (props) => {
         dispatch(fetchUsers())
     }, [])
 
-
     const onPaginationBtnClick = (pageNum, usersCount) => dispatch(fetchUsersPage(pageNum, usersCount))
     const onFollowBtnClick = (userId) => {
         dispatch(fetchFollowData(userId))

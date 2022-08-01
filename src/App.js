@@ -5,7 +5,7 @@ import {Routes, Route, BrowserRouter} from "react-router-dom";
 import Newsletter from "./components/Newsletter/Newsletter";
 import Music from "./components/Music/Music";
 import Login from "./components/Login/Login";
-import MessagesContainer from "./components/Messanges/MessagesContainer";
+import MessagesContainer from "./components/Messenger/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 

@@ -15,16 +15,17 @@ const mapStateToProps = (state) => (
 )
 const mapDispatchToProps = (dispatch) => (
     {
-        onTextareaInput (e) {
+        onTextareaInput(e) {
             dispatch(
                 changeInputMessageData(changeInputMessageDataActionCreator(e.target.value))
             )
         },
-        onMessageSubmit () {
-            dispatch(changeMessageData())
+        onMessageSubmit() {
+            const id = Math.floor(Math.random()*1000)
+            dispatch(changeMessageData(id))
         }
     }
 )
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps) (Messages)
+const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages)
 
 export default MessagesContainer

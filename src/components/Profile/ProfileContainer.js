@@ -1,6 +1,5 @@
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {addUserData, addUserDataAC} from "../../Redux/reduxSlices/profileSlice";
 
 const mapStateToProps = (state) => ({
     name: state.profilePage.userData.fullName,
@@ -11,11 +10,6 @@ const mapStateToProps = (state) => ({
     jobDesc: state.profilePage.userData.lookingForAJobDescription,
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    sendUserData: (data) => {
-        dispatch(addUserData(addUserDataAC(data)))
-    }
-})
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile)
+const ProfileContainer = connect(mapStateToProps, {})(Profile)
 export default ProfileContainer

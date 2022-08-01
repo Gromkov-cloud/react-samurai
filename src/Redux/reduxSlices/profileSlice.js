@@ -32,6 +32,9 @@ const profileSlice = createSlice({
     reducers: {
         addUserData: (state, action) => {
             state.userData = action.payload.userData
+        },
+        updateStatus: (state, action) => {
+
         }
     },
     extraReducers: {

@@ -7,5 +7,5 @@ export const useLoginRedirect = () => {
     const navigate = useNavigate()
     useEffect(() => {
         !isAuth && navigate("/login")
-    })
+    },[isAuth])
 }

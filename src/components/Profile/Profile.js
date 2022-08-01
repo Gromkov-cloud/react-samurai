@@ -1,20 +1,13 @@
 import Posts from "../Posts/Posts"
+import UserStatus from "./UserStatus/UserStatus";
 import s from "./Profile.module.css"
-import {useParams} from "react-router-dom";
-import {useEffect} from "react";
-import {useDispatch} from "react-redux";
-import {fetchUserData} from "../../Redux/reduxSlices/profileSlice";
 import {useLoginRedirect} from "../../Hooks/useLoginRedirect";
+import {useUserData} from "../../Hooks/useUserData";
 
 const Profile = (props) => {
 
     useLoginRedirect()
-
-    const dispatch = useDispatch()
-    const userId = useParams().id
-    useEffect(() => {
-        dispatch(fetchUserData(userId))
-    })
+    useUserData()
 
     return (
         <div>
@@ -25,7 +18,12 @@ const Profile = (props) => {
                          alt="avatar"/>
                     <div className={s.userInfo}>
                         <p className={s.name}>{props.name}</p>
-                        <p className={`${s.link}`}>About me: {props.status}</p>
+
+                        <p className={`${s.link}`}>
+                            <UserStatus/>
+                        </p>
+
+                        {/*<p className={`${s.link}`}>About me: {props.status}</p>*/}
                         <p className={`${s.link}`}>vk: {props.vk}</p>
                         {props.job ? <p className={`${s.link}`}>Searching for a job</p> : null}
                         {props.jobDesc ? <p className={`${s.link}`}>About job: {props.jobDesc}</p> : null}
