@@ -23,7 +23,9 @@ const Profile = (props) => {
                         <p className={s.name}>{props.name}</p>
 
                         <p className={`${s.link}`}>
-                            <UserStatus isStatusChangable={isProfileOwner}/>
+                            <UserStatus isStatusChangable={isProfileOwner}
+                                        userId={userId}
+                            />
                         </p>
 
                         <p className={`${s.link}`}>vk: {props.vk}</p>

@@ -1,11 +1,12 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {changeStatus, setUserStatus} from "../../../Redux/reduxSlices/profileSlice";
+import {changeStatus, getUserStatus, setUserStatus} from "../../../Redux/reduxSlices/profileSlice";
+import styles from "./UserStatus.module.css"
 
 const UserStatus = (props) => {
 
     const dispatch = useDispatch()
-    const status = useSelector((state) => state.profilePage.userData.aboutMe)
+    const status = useSelector((state) => state.profilePage.userStatus)
     let [editMode, changeEditMode] = useState(false)
     const onStatusInputChange = (e) => {
         dispatch(changeStatus(e.target.value))
@@ -14,6 +15,10 @@ const UserStatus = (props) => {
         changeEditMode(editMode = false)
         dispatch(setUserStatus(e.target.value))
     }
+
+    useEffect(() => {
+        dispatch(getUserStatus(props.userId))
+    },[props.userId])
 
     return (
         <>
@@ -24,11 +29,16 @@ const UserStatus = (props) => {
                                onStatusInputChange(e)
                            }}
                            value={status}
-                           onBlur={(e) => {onStatusInputBlur(e)}}
+                           onBlur={(e) => {
+                               onStatusInputBlur(e)
+                           }}
                            autoFocus={true}
                     />
                     :
-                    <span onClick={() => changeEditMode(editMode = true)}>{status || "Set your status"}</span>
+                    <span onClick={() => changeEditMode(editMode = true)}>
+                        {status || "Set your status"}
+                        <span className={styles.statusChange}> click to change status</span>
+                    </span>
                 :
                 <span>{status || "Status not set"}</span>
             }

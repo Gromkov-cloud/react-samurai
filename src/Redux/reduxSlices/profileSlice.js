@@ -9,13 +9,19 @@ export const fetchUserData = createAsyncThunk(
     }
 )
 
+export const getUserStatus = createAsyncThunk(
+    "profilePage/getUserStatus",
+    async (userId) => {
+        const response = await profileAPI.getStatus(userId)
+        return  await response.json()
+    }
+)
+
 export const setUserStatus = createAsyncThunk(
     "profilePage/setUserStatus",
     async (status) => {
-        console.log()
         const response = await profileAPI.setStatus(status)
         const data = await response.json()
-        console.log(data)
     }
 )
 
@@ -37,6 +43,7 @@ const profileSlice = createSlice({
             },
             aboutMe: null,
         },
+        userStatus: null,
         status: null,
     },
     reducers: {
@@ -44,7 +51,7 @@ const profileSlice = createSlice({
             state.userData = action.payload.userData
         },
         changeStatus: (state, action) => {
-            state.userData.aboutMe = action.payload
+            state.userStatus = action.payload
         }
     },
     extraReducers: {
@@ -53,11 +60,13 @@ const profileSlice = createSlice({
         },
         [fetchUserData.fulfilled]: (state, action) => {
             state.userData = action.payload
-            if (!action.payload.aboutMe) {state.userData.aboutMe = ""}
             state.status = "response created"
         },
         [fetchUserData.rejected]: (state) => {
             state.status = "error"
+        },
+        [getUserStatus.fulfilled]: (state, action) => {
+            state.userStatus = action.payload
         }
     }
 })
