@@ -7,8 +7,18 @@ export const fetchUserData = createAsyncThunk(
         const response = await profileAPI.getUserData(id)
         return await response.json()
     }
-
 )
+
+export const setUserStatus = createAsyncThunk(
+    "profilePage/setUserStatus",
+    async (status) => {
+        console.log()
+        const response = await profileAPI.setStatus(status)
+        const data = await response.json()
+        console.log(data)
+    }
+)
+
 
 const profileSlice = createSlice({
     name: "profilePage",
@@ -33,8 +43,8 @@ const profileSlice = createSlice({
         addUserData: (state, action) => {
             state.userData = action.payload.userData
         },
-        updateStatus: (state, action) => {
-
+        changeStatus: (state, action) => {
+            state.userData.aboutMe = action.payload
         }
     },
     extraReducers: {
@@ -43,6 +53,7 @@ const profileSlice = createSlice({
         },
         [fetchUserData.fulfilled]: (state, action) => {
             state.userData = action.payload
+            if (!action.payload.aboutMe) {state.userData.aboutMe = ""}
             state.status = "response created"
         },
         [fetchUserData.rejected]: (state) => {
@@ -51,7 +62,7 @@ const profileSlice = createSlice({
     }
 })
 
-export const {addUserData} = profileSlice.actions
+export const {addUserData, changeStatus} = profileSlice.actions
 
 export const addUserDataAC = (userData) => ({
     userData,

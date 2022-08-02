@@ -3,11 +3,14 @@ import UserStatus from "./UserStatus/UserStatus";
 import s from "./Profile.module.css"
 import {useLoginRedirect} from "../../Hooks/useLoginRedirect";
 import {useUserData} from "../../Hooks/useUserData";
+import {useSelector} from "react-redux";
 
 const Profile = (props) => {
 
     useLoginRedirect()
-    useUserData()
+    const {userId} = useUserData()
+    const loggedUserId = useSelector((state) => state.loginPage.userData.id)
+    const isProfileOwner = userId === loggedUserId
 
     return (
         <div>
@@ -20,10 +23,9 @@ const Profile = (props) => {
                         <p className={s.name}>{props.name}</p>
 
                         <p className={`${s.link}`}>
-                            <UserStatus/>
+                            <UserStatus isStatusChangable={isProfileOwner}/>
                         </p>
 
-                        {/*<p className={`${s.link}`}>About me: {props.status}</p>*/}
                         <p className={`${s.link}`}>vk: {props.vk}</p>
                         {props.job ? <p className={`${s.link}`}>Searching for a job</p> : null}
                         {props.jobDesc ? <p className={`${s.link}`}>About job: {props.jobDesc}</p> : null}

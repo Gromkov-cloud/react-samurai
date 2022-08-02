@@ -5,8 +5,10 @@ import {fetchUserData} from "../Redux/reduxSlices/profileSlice";
 
 export const useUserData = () => {
     const dispatch = useDispatch()
-    const userId = useParams().id
+    const userId = +useParams().id
     useEffect(() => {
         dispatch(fetchUserData(userId))
     })
+
+    return {userId}
 }
