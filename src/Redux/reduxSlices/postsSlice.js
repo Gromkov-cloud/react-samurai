@@ -21,39 +21,25 @@ const postsSlice = createSlice({
     },
 
     reducers: {
-        changeInputPostData: (state, action) => {
-            if (action.payload.eventParent === "POST-TITLE") {
-                state.PostsData.PostInput.title = action.payload.text
-            } else if (action.payload.eventParent === "POST-BODY") {
-                state.PostsData.PostInput.postText = action.payload.text
+        addPost: (state, action) => {
+            const title = action.payload.title
+            const postText = action.payload.postText
+
+            let newPostData = {
+                title: title,
+                postText: postText,
+                author: "User Nickname",
+                avatar: "https://imgholder.ru/60x60",
+                likes: Math.random() * 100,
             }
-        },
-        addPost: (state) => {
-            const title = state.PostsData.PostInput.title
-            const postText = state.PostsData.PostInput.postText
-            if (title || postText !== "") {
-                let newPostData = {
-                    title: title,
-                    postText: postText,
-                    author: "User Nickname",
-                    avatar: "https://imgholder.ru/60x60",
-                    likes: Math.random() * 100,
-                }
-                state.PostsData.Posts.unshift(newPostData)
-                state.PostsData.PostInput.title = ""
-                state.PostsData.PostInput.postText = ""
-            }
+            state.PostsData.Posts.unshift(newPostData)
+            state.PostsData.PostInput.title = ""
+            state.PostsData.PostInput.postText = ""
         }
     }
 })
 
-export const changeInputPostDataActionCreator = (eventParent, text) => {
-    return {
-        eventParent: eventParent,
-        text: text,
-    }
-}
 
-export const {addPost, changeInputPostData} = postsSlice.actions
+export const {addPost} = postsSlice.actions
 
 export default postsSlice

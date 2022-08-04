@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import PostAdd from "./PostAdd";
-import {addPost, changeInputPostData, changeInputPostDataActionCreator} from "../../../Redux/reduxSlices/postsSlice";
+import {addPost} from "../../../Redux/reduxSlices/postsSlice";
 
 const mapStateToProps = (state) => (
     {
@@ -11,22 +11,8 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => (
     {
-        onPostSubmit() {
-            dispatch(addPost())
-        },
-        onTitleChange(e) {
-            const actionData = changeInputPostDataActionCreator(
-                "POST-TITLE",
-                e.target.value
-            )
-            dispatch(changeInputPostData(actionData))
-        },
-        onBodyChange(e) {
-            const actionData = changeInputPostDataActionCreator(
-                "POST-BODY",
-                e.target.value
-            )
-            dispatch(changeInputPostData(actionData))
+        onPostSubmit(postData) {
+            dispatch(addPost(postData))
         },
     }
 )
