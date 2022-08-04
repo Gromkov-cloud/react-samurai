@@ -1,5 +1,6 @@
 import {auth} from "../../Redux/reduxSlices/loginSlice";
 import {useDispatch, useSelector} from "react-redux";
+import LoginForm from "../Forms/LoginForm/LoginFrom";
 
 const Login = () => {
     const buttonStatus = useSelector(state => state.loginPage.status)
@@ -12,6 +13,7 @@ const Login = () => {
         <div>
             <h1>Login page</h1>
             <button onClick={onBtnClick} disabled={buttonStatus === "pending"}>Login Me</button>
+            <LoginForm></LoginForm>
         </div>
     )
 }
