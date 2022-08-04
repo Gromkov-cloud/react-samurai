@@ -55,14 +55,11 @@ const messagesSlice = createSlice({
     },
 
     reducers: {
-        changeInputMessageData: (state, action) => {
-            state.MessagesData.dialogMessagesData.messageInput = action.payload.injectedMessage
-        },
         changeMessageData: (state, action) => {
-            const message = state.MessagesData.dialogMessagesData.messageInput
+            const message = action.payload.message
             state.MessagesData.dialogMessagesData.messageInput = ""
             state.MessagesData.dialogMessagesData.messages.push({
-                id: action.payload,
+                id: action.payload.id,
                 message
             })
         }
@@ -70,12 +67,6 @@ const messagesSlice = createSlice({
 
 })
 
-export const changeInputMessageDataActionCreator = (message) => {
-    return {
-        injectedMessage: message,
-    }
-}
-
-export const {changeInputMessageData, changeMessageData} = messagesSlice.actions
+export const {changeMessageData} = messagesSlice.actions
 
 export default messagesSlice

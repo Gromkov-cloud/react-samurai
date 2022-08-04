@@ -1,7 +1,5 @@
 import Messages from "./Messanges";
 import {
-    changeInputMessageData,
-    changeInputMessageDataActionCreator,
     changeMessageData
 } from "../../Redux/reduxSlices/messagesSlice";
 import {connect} from "react-redux";
@@ -15,14 +13,13 @@ const mapStateToProps = (state) => (
 )
 const mapDispatchToProps = (dispatch) => (
     {
-        onTextareaInput(e) {
-            dispatch(
-                changeInputMessageData(changeInputMessageDataActionCreator(e.target.value))
-            )
-        },
-        onMessageSubmit() {
+        onMessageSubmit(message) {
             const id = Math.floor(Math.random()*1000)
-            dispatch(changeMessageData(id))
+            const messageData = {
+                id,
+                message
+            }
+            dispatch(changeMessageData(messageData))
         }
     }
 )
