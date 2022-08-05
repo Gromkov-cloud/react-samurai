@@ -2,10 +2,10 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {loginAPI} from "../../API/loginAPI";
 
 export const auth = createAsyncThunk(
-    "login/auth",
+    "loginPage/auth",
     async (_, {dispatch, getState}) => {
         try {
-            const response = await loginAPI.login()
+            const response = await loginAPI.auth()
 
             const data = await response.json()
 
@@ -14,6 +14,7 @@ export const auth = createAsyncThunk(
             }
 
             dispatch(setUserData(data.data))
+
             return data
 
         } catch (e) {
@@ -23,8 +24,17 @@ export const auth = createAsyncThunk(
     }
 )
 
+export const login = createAsyncThunk(
+    "loginPage/login",
+    async ({email, password, rememberMe, captcha}, {dispatch}) => {
+        const response = await loginAPI.login(email, password, rememberMe, captcha)
+        dispatch(auth())
+        console.log(await response.json())
+    }
+)
+
 const loginSlice = createSlice({
-        name: "login",
+        name: "loginPage",
         initialState: {
             userData: {
                 id: null,
@@ -33,7 +43,7 @@ const loginSlice = createSlice({
             },
             status: null,
             error: null,
-            isAuth: true
+            isAuth: null
         },
         reducers: {
             setUserData: (state, action) => {

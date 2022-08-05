@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
 
     const {
         register,
@@ -10,8 +10,9 @@ const LoginForm = () => {
         handleSubmit
     } = useForm({mode: "onBlur"})
 
-    const onSubmit = (data, formState) => {
-        alert(`Form is submitted, login: ${data.login || "not set"}, password: ${data.password || "not set"}`)
+    const onSubmit = (data) => {
+        console.log(data)
+        props.onLoginFormSubmit(data.login,data.password, false, true)
     }
 
     return (
