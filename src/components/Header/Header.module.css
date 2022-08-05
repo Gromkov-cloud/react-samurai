@@ -46,3 +46,11 @@ header {
 .active {
     color: #fa9d01;
 }
+
+.signOut{
+    cursor: pointer;
+}
+.signOut:hover{
+    color: cadetblue;
+    text-decoration: underline;
+}

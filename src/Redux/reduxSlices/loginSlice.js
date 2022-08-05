@@ -29,7 +29,14 @@ export const login = createAsyncThunk(
     async ({email, password, rememberMe, captcha}, {dispatch}) => {
         const response = await loginAPI.login(email, password, rememberMe, captcha)
         dispatch(auth())
-        console.log(await response.json())
+    }
+)
+
+export const signOut = createAsyncThunk(
+    "loginPage/singOut",
+    async (_,{dispatch}) => {
+        const response = await loginAPI.signOut()
+        dispatch(changeAuthStatus(false))
     }
 )
 
@@ -53,6 +60,9 @@ const loginSlice = createSlice({
             },
             showError: (state, action) => {
                 state.error = action.payload
+            },
+            changeAuthStatus: (state, action) => {
+                state.isAuth = action.payload
             }
         },
         extraReducers: {
@@ -69,6 +79,6 @@ const loginSlice = createSlice({
     }
 )
 
-export const {setUserData, showError} = loginSlice.actions
+export const {setUserData, showError, changeAuthStatus} = loginSlice.actions
 
 export default loginSlice

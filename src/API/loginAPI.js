@@ -15,9 +15,18 @@ export const loginAPI = {
             body: JSON.stringify({
                 email: email,
                 password: password,
-                rememberMe: rememberMe,
+                rememberMe: false,
                 captcha: true
             }),
+        })
+    },
+    signOut: async () => {
+        return await fetch(`https://social-network.samuraijs.com/api/1.0/auth/login`, {
+            method: "Delete",
+            credentials: "include",
+            headers: {
+                "API-KEY": "d8cc6de0-975e-4755-a3ab-7bc830ca2dba",
+            },
         })
     }
 }
