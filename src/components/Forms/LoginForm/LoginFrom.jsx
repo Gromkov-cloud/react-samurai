@@ -1,4 +1,5 @@
 import {useForm} from "react-hook-form";
+import {useSelector} from "react-redux";
 
 const LoginForm = (props) => {
 
@@ -7,18 +8,24 @@ const LoginForm = (props) => {
         formState: {
             errors
         },
-        handleSubmit
+        handleSubmit,
+        reset
     } = useForm({mode: "onBlur"})
 
+    const loginError = useSelector((state) => state.loginPage.loginError)
+    const isDisable = useSelector((state) => state.loginPage.isLoginBtnDisable)
+    const isAuth = useSelector((state) => state.loginPage.isAuth)
+
     const onSubmit = (data) => {
-        props.onLoginFormSubmit(data.login,data.password, data.rememberMe, true)
+        props.onLoginFormSubmit(data.login, data.password, data.rememberMe, true)
+        reset()
     }
 
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>
-                    Login
+                    Email
                     <input
                         {...register("login", {
                             required: {
@@ -46,7 +53,8 @@ const LoginForm = (props) => {
                             minLength: {
                                 value: 3,
                                 message: "Minimal length - 3"
-                            }
+                            },
+                            disabled: {}
                         })}
                         type="password"
                         placeholder={"Password"}/>
@@ -60,7 +68,16 @@ const LoginForm = (props) => {
                     />
                 </label>
 
-                <input type="submit"/>
+                <button type="submit" disabled={isDisable || isAuth}>Submit</button>
+
+                {isAuth ? <p><b>You are authorized</b></p> : null}
+
+                {
+                    loginError ?
+                        loginError.map(error => <p key={error}>{error}</p>)
+                        : null
+                }
+
             </form>
         </>
     )

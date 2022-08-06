@@ -6,7 +6,6 @@ export const auth = createAsyncThunk(
     async (_, {dispatch, getState}) => {
         try {
             const response = await loginAPI.auth()
-
             const data = await response.json()
 
             if (data.resultCode) {
@@ -14,6 +13,7 @@ export const auth = createAsyncThunk(
             }
 
             dispatch(setUserData(data.data))
+            dispatch(showError(null))
 
             return data
 
@@ -28,15 +28,22 @@ export const login = createAsyncThunk(
     "loginPage/login",
     async ({email, password, rememberMe, captcha}, {dispatch}) => {
         const response = await loginAPI.login(email, password, rememberMe, captcha)
-        dispatch(auth())
+        const data = await response.json()
+        if (data.resultCode) {
+            dispatch(setLoginError(data.messages))
+        } else {
+            dispatch(auth())
+            dispatch(setLoginError(data.messages))
+        }
+        return await response.json()
     }
 )
 
 export const signOut = createAsyncThunk(
     "loginPage/singOut",
-    async (_,{dispatch}) => {
+    async (_, {dispatch}) => {
         const response = await loginAPI.signOut()
-        dispatch(changeAuthStatus(false))
+        dispatch(unsetUserData(false))
     }
 )
 
@@ -50,7 +57,9 @@ const loginSlice = createSlice({
             },
             status: null,
             error: null,
-            isAuth: null
+            isAuth: null,
+            loginError: null,
+            isLoginBtnDisable: false
         },
         reducers: {
             setUserData: (state, action) => {
@@ -61,8 +70,16 @@ const loginSlice = createSlice({
             showError: (state, action) => {
                 state.error = action.payload
             },
-            changeAuthStatus: (state, action) => {
+            unsetUserData: (state, action) => {
                 state.isAuth = action.payload
+                state.userData = {
+                    id: null,
+                    email: null,
+                    login: null,
+                }
+            },
+            setLoginError: (state, action) => {
+                state.loginError = action.payload
             }
         },
         extraReducers: {
@@ -71,14 +88,22 @@ const loginSlice = createSlice({
             },
             [auth.fulfilled]: (state) => {
                 state.status = "successful"
+                state.isLoginBtnDisable = false
             },
             [auth.rejected]: (state) => {
                 state.status = "Error"
-            }
+                state.isLoginBtnDisable = false
+            },
+            [login.pending]: (state) => {
+                state.isLoginBtnDisable = true
+            },
+            [login.rejected]: (state) => {
+                state.isLoginBtnDisable = false
+            },
         }
     }
 )
 
-export const {setUserData, showError, changeAuthStatus} = loginSlice.actions
+export const {setUserData, showError, unsetUserData, setLoginError} = loginSlice.actions
 
 export default loginSlice
