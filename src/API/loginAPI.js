@@ -15,7 +15,7 @@ export const loginAPI = {
             body: JSON.stringify({
                 email: email,
                 password: password,
-                rememberMe: false,
+                rememberMe: rememberMe,
                 captcha: true
             }),
         })

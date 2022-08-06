@@ -11,8 +11,7 @@ const LoginForm = (props) => {
     } = useForm({mode: "onBlur"})
 
     const onSubmit = (data) => {
-        console.log(data)
-        props.onLoginFormSubmit(data.login,data.password, false, true)
+        props.onLoginFormSubmit(data.login,data.password, data.rememberMe, true)
     }
 
     return (
@@ -53,6 +52,13 @@ const LoginForm = (props) => {
                         placeholder={"Password"}/>
                 </label>
                 <p>{errors?.password && errors.password.message}</p>
+
+                <label>
+                    Remember Me
+                    <input type="checkbox"
+                           {...register("rememberMe")}
+                    />
+                </label>
 
                 <input type="submit"/>
             </form>
