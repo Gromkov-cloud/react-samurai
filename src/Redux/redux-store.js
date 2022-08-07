@@ -6,9 +6,11 @@ import profileSlice from "./reduxSlices/profileSlice";
 import loginSlice from "./reduxSlices/loginSlice"
 import followToggle from "./reduxSlices/followSlice";
 import paginationSlice from "./reduxSlices/paginationSlice";
+import appSlice from "./reduxSlices/appSlice";
 
 const store = configureStore({
     reducer: {
+        appSlice: appSlice.reducer,
         messages: messagesSlice.reducer,
         posts: postsSlice.reducer,
         usersPage: usersSlice.reducer,

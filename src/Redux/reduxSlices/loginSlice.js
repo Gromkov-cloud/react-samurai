@@ -3,7 +3,7 @@ import {loginAPI} from "../../API/loginAPI";
 
 export const auth = createAsyncThunk(
     "loginPage/auth",
-    async (_, {dispatch, getState}) => {
+   async (_, {dispatch, getState}) => {
         try {
             const response = await loginAPI.auth()
             const data = await response.json()
@@ -14,7 +14,6 @@ export const auth = createAsyncThunk(
 
             dispatch(setUserData(data.data))
             dispatch(showError(null))
-
             return data
 
         } catch (e) {
@@ -42,7 +41,7 @@ export const login = createAsyncThunk(
 export const signOut = createAsyncThunk(
     "loginPage/singOut",
     async (_, {dispatch}) => {
-        const response = await loginAPI.signOut()
+        await loginAPI.signOut()
         dispatch(unsetUserData(false))
     }
 )
