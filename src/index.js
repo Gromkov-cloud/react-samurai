@@ -14,9 +14,7 @@ root.render(
         <BrowserRouter>
             <InitializedApp appState={store.getState()}/>
         </BrowserRouter>
-
     </Provider>
 );
-
 
 reportWebVitals();
