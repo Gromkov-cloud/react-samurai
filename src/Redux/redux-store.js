@@ -7,6 +7,7 @@ import loginSlice from "./reduxSlices/loginSlice"
 import followToggle from "./reduxSlices/followSlice";
 import paginationSlice from "./reduxSlices/paginationSlice";
 import appSlice from "./reduxSlices/appSlice";
+import changeUserInfoSlice from "./reduxSlices/changeUserInfoSlice"
 
 const store = configureStore({
     reducer: {
@@ -17,7 +18,8 @@ const store = configureStore({
         profilePage: profileSlice.reducer,
         loginPage: loginSlice.reducer,
         followToggle: followToggle.reducer,
-        pagination: paginationSlice.reducer
+        pagination: paginationSlice.reducer,
+        changeUserInfoPage: changeUserInfoSlice.reducer
     }
 })
 

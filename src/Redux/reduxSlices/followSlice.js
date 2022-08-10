@@ -31,10 +31,12 @@ const followToggle = createSlice({
     },
     reducers: {
         toggleBtnText: (state, action) => {
-            if (state.userSubscriptions.indexOf(action.payload) === -1) {
-                state.userSubscriptions.push(action.payload)
+            const id = action.payload
+            let subscriptions = state.userSubscriptions
+            if (subscriptions.indexOf(id) === -1) {
+                subscriptions.push(id)
             } else {
-                state.userSubscriptions = state.userSubscriptions.filter(userId => userId !== action.payload)
+                state.userSubscriptions = subscriptions.filter(userId => userId !== id)
             }
         },
         setUnfollowData: (state, action) => {

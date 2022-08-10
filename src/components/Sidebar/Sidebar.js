@@ -27,7 +27,7 @@ const Sidebar = () => {
                             Messages
                         </NavLink>
                     </li>
-                    <li className={s.item}>
+                   {/* <li className={s.item}>
                         <NavLink to="/newsletter"
                                  className={navData => navData.isActive ? `${s.link} ${s.active}` : s.link}
                         >
@@ -40,7 +40,7 @@ const Sidebar = () => {
                         >
                             Music
                         </NavLink>
-                    </li>
+                    </li>*/}
                 </ul>
             </nav>
         </aside>

@@ -7,8 +7,9 @@ import Music from "./components/Music/Music";
 import Login from "./components/Login/Login";
 import MessagesContainer from "./components/Messenger/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import useAppLoading from "./Hooks/useAppLoading";
+import Profile from "./components/Profile/Profile";
+import ChangeUserInfo from "./components/ChangeUserInfo/ChangeUserInfo";
 
 
 let App = function () {
@@ -17,14 +18,19 @@ let App = function () {
             <Header/>
             <div className="page-content">
                 <Sidebar/>
-                <Routes>
-                    <Route path="/profile/:id" element={<ProfileContainer/>}/>
-                    <Route path="/users" element={<UsersContainer/>}/>
-                    <Route path="/newsletter" element={<Newsletter/>}/>
-                    <Route path="/messages" element={<MessagesContainer/>}/>
-                    <Route path="/music" element={<Music/>}/>
-                    <Route path="/login" element={<Login/>}/>
-                </Routes>
+
+                <div className="app-content">
+                    <Routes>
+                        <Route path="/profile/:id" element={<Profile/>}/>
+                        <Route path="/users" element={<UsersContainer/>}/>
+                        <Route path="/newsletter" element={<Newsletter/>}/>
+                        <Route path="/messages" element={<MessagesContainer/>}/>
+                        <Route path="/music" element={<Music/>}/>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/change-user-info" element={<ChangeUserInfo/>}/>
+                    </Routes>
+                </div>
+
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ export const useUserData = () => {
     const userId = +useParams().id
     useEffect(() => {
         dispatch(fetchUserData(userId))
-    })
+    },[userId])
 
     return {userId}
 }
