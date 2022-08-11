@@ -14,9 +14,10 @@ const API = {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        AboutMe: "become react samurai",
-                        LookingForAJobDescription: "learn learn learn",
-                        FullName: "Vasiliy_G",
+                        AboutMe: userInfo.aboutMe,
+                        LookingForAJob: userInfo.lookingForAJob,
+                        LookingForAJobDescription: userInfo.lookingForAJobDescription,
+                        FullName: userInfo.fullName,
                         contacts: {
                             vk: userInfo.vkLink,
                             github: userInfo.githubLink,

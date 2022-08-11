@@ -6,13 +6,16 @@ export const fetchUserInfoThunk = createAsyncThunk(
     async (ownerId, {dispatch}) => {
         const response = await API.changeUserInfoPageAPI.fetchUserData(ownerId)
         const data = await response.json()
-        dispatch(setUserContacts(data.contacts))
+        console.log(data)
+        dispatch(setUserMainInfo(data))
+        dispatch(setUserContacts(data))
+
     }
 )
 
 export const putUserInfoThunk = createAsyncThunk(
     "changeUserInfoPage/putUserInfoThunk",
-    async (userInfo,_) => {
+    async (userInfo, _) => {
         const response = await API.changeUserInfoPageAPI.putUserInfo(userInfo)
         const data = await response.json()
         console.log(data)
@@ -22,25 +25,42 @@ export const putUserInfoThunk = createAsyncThunk(
 const changeUserInfoSlice = createSlice({
     name: "changeUserInfoPage",
     initialState: {
-        contacts: {
-            facebook: null,
-            github: null,
-            instagram: null,
-            mainLink: null,
-            twitter: null,
-            vk: null,
-            website: null,
-            youtube: null
+        userInfo: {
+            mainInfo: {
+                aboutMe: null,
+                fullName: null,
+                lookingForAJob: null,
+                lookingForAJobDescription: null
+            },
+            contacts: {
+                facebook: null,
+                github: null,
+                instagram: null,
+                mainLink: null,
+                twitter: null,
+                vk: null,
+                website: null,
+                youtube: null
+            }
         }
     },
     reducers: {
+        setUserMainInfo: (state, action) => {
+            const {aboutMe, fullName, lookingForAJob, lookingForAJobDescription} = action.payload
+            state.userInfo.mainInfo = {
+                aboutMe: aboutMe,
+                fullName,
+                lookingForAJob,
+                lookingForAJobDescription
+            }
+        },
         setUserContacts: (state, action) => {
-            state.contacts = action.payload
+            state.userInfo.contacts = action.payload.contacts
         }
     },
     extraReducers: {}
 })
 
-export const {setUserContacts} = changeUserInfoSlice.actions
+export const {setUserContacts, setUserMainInfo} = changeUserInfoSlice.actions
 
 export default changeUserInfoSlice

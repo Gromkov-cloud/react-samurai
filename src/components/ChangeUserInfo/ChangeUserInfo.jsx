@@ -7,7 +7,8 @@ import styles from "./ChangeUserInfo.module.css"
 const ChangeUserInfo = () => {
     const dispatch = useDispatch()
     const ownerId = useSelector((state) => state.loginPage.userData.id)
-    const userContacts = useSelector((state) => state.changeUserInfoPage.contacts)
+    const userInfo = useSelector((state)=> state.changeUserInfoPage.userInfo)
+
     useEffect(() => {
         dispatch(fetchUserInfoThunk(ownerId))
     }, [])
@@ -19,26 +20,57 @@ const ChangeUserInfo = () => {
     } = useForm()
 
     const onFormSubmit = (data) => {
-        console.log(data)
         dispatch(putUserInfoThunk(data))
     }
 
-    Object.entries(userContacts).forEach(link => setValue(`${link[0]}Link`, link[1]))
+    Object.entries(userInfo.contacts).forEach(link => setValue(`${link[0]}Link`, link[1]))
+    Object.entries(userInfo.mainInfo).forEach(link => setValue(`${link[0]}`, link[1]))
 
     return (
         <>
             <form onSubmit={handleSubmit(onFormSubmit)} className={styles.form}>
-                {
-                    Object.keys(userContacts).map(linkName => (
-                            <label key={linkName}>
-                                {`set your ${linkName} link:`}
-                                <input type="text"
-                                       {...register(`${linkName}Link`)}
-                                />
-                            </label>
+                <div>
+                    <h1>Main information</h1>
+                    <label>
+                        Write yor full name
+                        <input type="text"
+                               {...register("fullName")}
+                        />
+                    </label>
+                    <label>
+                        Write something about yourself
+                        <input type="text"
+                               {...register("aboutMe")}
+                        />
+                    </label>
+                    <label>
+                        Looking for a job?
+                        <input type="checkbox"
+                               {...register("lookingForAJob")}
+                        />
+                    </label>
+                    <label>
+                        Write about work
+                        <input type="text"
+                               {...register("lookingForAJobDescription")}
+                        />
+                    </label>
+
+                </div>
+                <div>
+                    <h1>Social links</h1>
+                    {
+                        Object.keys(userInfo.contacts).map(linkName => (
+                                <label key={linkName}>
+                                    {`set your ${linkName} link:`}
+                                    <input type="text"
+                                           {...register(`${linkName}Link`)}
+                                    />
+                                </label>
+                            )
                         )
-                    )
-                }
+                    }
+                </div>
                 <button type={"submit"}>submit</button>
             </form>
         </>
