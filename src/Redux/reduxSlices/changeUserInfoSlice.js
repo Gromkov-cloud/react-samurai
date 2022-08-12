@@ -6,10 +6,8 @@ export const fetchUserInfoThunk = createAsyncThunk(
     async (ownerId, {dispatch}) => {
         const response = await API.changeUserInfoPageAPI.fetchUserData(ownerId)
         const data = await response.json()
-        console.log(data)
         dispatch(setUserMainInfo(data))
         dispatch(setUserContacts(data))
-
     }
 )
 
@@ -18,7 +16,6 @@ export const putUserInfoThunk = createAsyncThunk(
     async (userInfo, _) => {
         const response = await API.changeUserInfoPageAPI.putUserInfo(userInfo)
         const data = await response.json()
-        console.log(data)
     }
 )
 
