@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {auth} from "../Redux/reduxSlices/loginSlice";
-import {setAppLoadingStatus} from "../Redux/reduxSlices/appSlice";
+import {setAppLoadingStatus} from "../Redux/reduxSlices/appSlice.ts";
 import Spinner from "../components/Spinner/Spinner";
 
 const useAppLoading = (App, state) => {

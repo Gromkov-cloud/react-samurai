@@ -6,7 +6,7 @@ import profileSlice from "./reduxSlices/profileSlice";
 import loginSlice from "./reduxSlices/loginSlice"
 import followToggle from "./reduxSlices/followSlice";
 import paginationSlice from "./reduxSlices/paginationSlice";
-import appSlice from "./reduxSlices/appSlice";
+import appSlice from "./reduxSlices/appSlice.ts";
 import changeUserInfoSlice from "./reduxSlices/changeUserInfoSlice"
 
 const store = configureStore({

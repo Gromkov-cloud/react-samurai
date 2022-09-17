@@ -23,7 +23,7 @@ let App = function () {
                     <Routes>
                         <Route path="/profile/:id" element={<Profile/>}/>
                         <Route path="/users" element={<UsersContainer/>}/>
-                        <Route path="/newsletter" element={<Newsletter/>}/>
+                        <Route path="/" element={<Newsletter/>}/>
                         <Route path="/messages" element={<MessagesContainer/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/login" element={<Login/>}/>
